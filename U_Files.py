@@ -6,6 +6,8 @@ import re
 root = tk.Tk()
 root.withdraw()
 
+COLUMN = input('Ingrese columna con el campo a unir sensible a mayúsculas: ')
+
 file_path1 = filedialog.askopenfilename(title='Seleccione archivo 1')
 
 file_path2 = filedialog.askopenfilename(title='Seleccione archivo 2')
@@ -24,14 +26,12 @@ df_2 = read_csv(str(file_path2),
 cols1 = df_1.columns
 cols2 = df_2.columns
 
-column = 'EMAIL'
-
-if column in cols1 and column in cols2:
+if COLUMN in cols1 and COLUMN in cols2:
 
     df_all = merge(df_1,
              df_2,
              how='outer',
-             on='EMAIL')
+             on=COLUMN)
 
     df_all= df_all.fillna(0)
     print(df_all.head(2))
